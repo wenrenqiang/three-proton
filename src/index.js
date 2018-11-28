@@ -1,5 +1,7 @@
 import { Proton } from './core';
 
+console.log('hi');
+
 export * from './behaviour';
 export * from './debug';
 export * from './ease';

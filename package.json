@@ -10,7 +10,7 @@
     "build": "webpack --env build && npm run examples:seed",
     "examples": "./scripts/examples",
     "examples:seed": "cp ./build/three-proton.js docs/js",
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --mode=development",
     "test": "mocha --require babel-core/register --colors ./test/*.spec.js",
     "test:only": "mocha --require babel-core/register --colors",
     "test:watch": "mocha --require babel-core/register --colors -w ./test/*.spec.js",

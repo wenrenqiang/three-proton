@@ -47,4 +47,10 @@ const config = {
   plugins: plugins
 };
 
-module.exports = config;
+module.exports = (env, argv) => {
+  if (argv.mode === 'development') {
+    config.output.path = __dirname + '/docs/js';
+  }
+
+  return config;
+};
