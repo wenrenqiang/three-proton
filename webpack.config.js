@@ -19,6 +19,13 @@ const config = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
+  devServer: {
+    publicPath: './docs',
+    contentBase: path.resolve(__dirname, './docs'),
+    watchContentBase: true,
+    compress: true,
+    port: 9001
+  },
   module: {
     rules: [
       {
