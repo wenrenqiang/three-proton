@@ -828,12 +828,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "@rohandeshpande/three-proton/src/core/fromjson.js~fromjson",
-    "function/index.html#static-function-fromJSON",
-    "<span>fromJSON</span> <span class=\"search-result-import-path\">@rohandeshpande/three-proton/src/core/fromJSON.js</span>",
-    "function"
-  ],
-  [
     "@rohandeshpande/three-proton/src/ease/index.js~geteasingbyname",
     "function/index.html#static-function-getEasingByName",
     "<span>getEasingByName</span> <span class=\"search-result-import-path\">@rohandeshpande/three-proton/src/ease/index.js</span>",
@@ -1495,13 +1489,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/behaviour/color.js~color#same",
-    "class/src/behaviour/Color.js~Color.html#instance-set-same",
+    "class/src/behaviour/Color.js~Color.html#instance-get-same",
     "src/behaviour/Color.js~Color#same",
     "member"
   ],
   [
     "src/behaviour/color.js~color#same",
-    "class/src/behaviour/Color.js~Color.html#instance-get-same",
+    "class/src/behaviour/Color.js~Color.html#instance-set-same",
     "src/behaviour/Color.js~Color#same",
     "member"
   ],
@@ -1825,13 +1819,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/behaviour/scale.js~scale#same",
-    "class/src/behaviour/Scale.js~Scale.html#instance-get-same",
+    "class/src/behaviour/Scale.js~Scale.html#instance-set-same",
     "src/behaviour/Scale.js~Scale#same",
     "member"
   ],
   [
     "src/behaviour/scale.js~scale#same",
-    "class/src/behaviour/Scale.js~Scale.html#instance-set-same",
+    "class/src/behaviour/Scale.js~Scale.html#instance-get-same",
     "src/behaviour/Scale.js~Scale#same",
     "member"
   ],
@@ -2328,12 +2322,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/core/fromjson.js",
-    "file/src/core/fromJSON.js.html",
-    "src/core/fromJSON.js",
-    "file"
-  ],
-  [
     "src/core/index.js",
     "file/src/core/index.js.html",
     "src/core/index.js",
@@ -2785,13 +2773,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/events/eventdispatcher.js~eventdispatcher#listeners",
-    "class/src/events/EventDispatcher.js~EventDispatcher.html#instance-get-listeners",
+    "class/src/events/EventDispatcher.js~EventDispatcher.html#instance-set-listeners",
     "src/events/EventDispatcher.js~EventDispatcher#listeners",
     "member"
   ],
   [
     "src/events/eventdispatcher.js~eventdispatcher#listeners",
-    "class/src/events/EventDispatcher.js~EventDispatcher.html#instance-set-listeners",
+    "class/src/events/EventDispatcher.js~EventDispatcher.html#instance-get-listeners",
     "src/events/EventDispatcher.js~EventDispatcher#listeners",
     "member"
   ],

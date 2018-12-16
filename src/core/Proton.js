@@ -84,7 +84,7 @@ export default class Proton {
    * @param {number} json.preParticles - The predetermined number of particles
    * @param {string} json.integrationType - The integration algorithm to use
    * @param {array<object>} json.emitters - The emitters for the proton instance
-   * @return {Proton}
+   * @return {Promise<Proton>}
    */
   static fromJSON(json) {
     return fromJSON(json);

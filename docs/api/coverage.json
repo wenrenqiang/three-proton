@@ -1,7 +1,7 @@
 {
-  "coverage": "52.36%",
-  "expectCount": 592,
-  "actualCount": 310,
+  "coverage": "52.04%",
+  "expectCount": 588,
+  "actualCount": 306,
   "files": {
     "src/behaviour/Alpha.js": {
       "expectCount": 11,
@@ -187,11 +187,6 @@
     "src/core/constants.js": {
       "expectCount": 18,
       "actualCount": 18,
-      "undocumentLines": []
-    },
-    "src/core/fromJSON.js": {
-      "expectCount": 4,
-      "actualCount": 4,
       "undocumentLines": []
     },
     "src/debug/constants.js": {

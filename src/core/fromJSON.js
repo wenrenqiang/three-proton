@@ -10,6 +10,7 @@ import {
 import { Emitter } from '../emitter';
 import { Proton } from '../core';
 import Rate from '../initializer/Rate';
+import { TextureLoader } from 'three';
 
 /**
  * Makes a rate instance.
@@ -25,47 +26,130 @@ const makeRate = json => new Rate.fromJSON(json);
  * @param {array<object>} items - An array of objects which provide initializer constructor params
  * @return {array<Initializer>}
  */
-const makeInitializers = items => {
-  const initializers = [];
+const makeInitializers = items =>
+  new Promise((resolve, reject) => {
+    const numberOfInitializers = items.length;
+    const madeInitializers = [];
+    const doNotRequireTextureLoading = items.filter(
+      ({ properties }) => !properties.texture
+    );
+    const doRequireTextureLoading = items.filter(
+      ({ properties }) => properties.texture
+    );
 
-  items.forEach(data => {
-    const { type, properties } = data;
+    doNotRequireTextureLoading.forEach(data => {
+      const { type, properties } = data;
 
-    if (!SUPPORTED_JSON_INITIALIZER_TYPES.includes(type)) {
-      throw new Error(
-        `The initializer type ${type} is invalid or not yet supported`
+      if (!SUPPORTED_JSON_INITIALIZER_TYPES.includes(type)) {
+        return reject(
+          `The initializer type ${type} is invalid or not yet supported`
+        );
+      }
+
+      madeInitializers.push(new Initializer[type].fromJSON(properties));
+
+      if (madeInitializers.length === numberOfInitializers) {
+        return resolve(madeInitializers);
+      }
+    });
+
+    doRequireTextureLoading.forEach(data => {
+      const {
+        type,
+        properties,
+        properties: { texture }
+      } = data;
+      const textureLoader = new TextureLoader();
+
+      if (!SUPPORTED_JSON_INITIALIZER_TYPES.includes(type)) {
+        return reject(
+          `The initializer type ${type} is invalid or not yet supported`
+        );
+      }
+
+      textureLoader.load(
+        texture,
+        loadedTexture => {
+          madeInitializers.push(
+            new Initializer[type].fromJSON({
+              ...properties,
+              loadedTexture
+            })
+          );
+
+          if (madeInitializers.length === numberOfInitializers) {
+            return resolve(madeInitializers);
+          }
+        },
+        undefined,
+        reject
       );
-    }
-
-    initializers.push(new Initializer[type].fromJSON(properties));
+    });
   });
-
-  return initializers;
-};
 
 /**
  * Makes behaviours from json items.
  *
  * @param {array<object>} items - An array of objects which provide behaviour constructor params
- * @return {array<Behaviour>}
+ * @return {Promise<array>}
  */
-const makeBehaviours = items => {
-  const behaviours = [];
+const makeBehaviours = items =>
+  new Promise((resolve, reject) => {
+    const numberOfBehaviours = items.length;
+    const madeBehaviours = [];
 
-  items.forEach(data => {
-    const { type, properties } = data;
+    items.forEach(data => {
+      const { type, properties } = data;
 
-    if (!SUPPORTED_JSON_BEHAVIOUR_TYPES.includes(type)) {
-      throw new Error(
-        `The behaviour type ${type} is invalid or not yet supported`
-      );
-    }
+      if (!SUPPORTED_JSON_BEHAVIOUR_TYPES.includes(type)) {
+        return reject(
+          `The behaviour type ${type} is invalid or not yet supported`
+        );
+      }
 
-    behaviours.push(new Behaviour[type].fromJSON(properties));
+      madeBehaviours.push(new Behaviour[type].fromJSON(properties));
+
+      if (madeBehaviours.length === numberOfBehaviours) {
+        return resolve(madeBehaviours);
+      }
+    });
   });
 
-  return behaviours;
-};
+const makeEmitters = emitters =>
+  new Promise((resolve, reject) => {
+    const madeEmitters = [];
+    const numberOfEmitters = emitters.length;
+
+    if (!numberOfEmitters) {
+      return resolve(madeEmitters);
+    }
+
+    emitters.forEach(data => {
+      const emitter = new Emitter();
+      const { rate, initializers, behaviours, position } = data;
+
+      makeInitializers(initializers)
+        .then(madeInitializers => {
+          emitter.setInitializers(madeInitializers);
+
+          return makeBehaviours(behaviours);
+        })
+        .then(madeBehaviours => {
+          emitter
+            .setBehaviours(madeBehaviours)
+            .setPosition(position)
+            .setRate(makeRate(rate))
+            .emit();
+
+          madeEmitters.push(emitter);
+
+          if (madeEmitters.length === numberOfEmitters) {
+            return resolve(madeEmitters);
+          }
+        })
+        .catch(reject);
+    });
+  });
 
 /**
  * Creates a Proton instance from a JSON object.
@@ -74,29 +158,32 @@ const makeBehaviours = items => {
  * @param {number} json.preParticles - The predetermined number of particles
  * @param {string} json.integrationType - The integration algorithm to use
  * @param {array<object>} json.emitters - The emitters for the proton instance
- * @return {Proton}
+ * @return {Promise<Proton>}
  */
-export default json => {
-  const {
-    preParticles = POOL_MAX,
-    integrationType = EULER,
-    emitters = []
-  } = json;
-  const proton = new Proton(preParticles, integrationType);
+export default json =>
+  new Promise((resolve, reject) => {
+    const {
+      preParticles = POOL_MAX,
+      integrationType = EULER,
+      emitters = []
+    } = json;
+    const proton = new Proton(preParticles, integrationType);
 
-  emitters.forEach(data => {
-    const emitter = new Emitter();
-    const { rate, initializers, behaviours, position } = data;
+    makeEmitters(emitters)
+      .then(madeEmitters => {
+        const numberOfEmitters = madeEmitters.length;
 
-    emitter
-      .setRate(makeRate(rate))
-      .setInitializers(makeInitializers(initializers))
-      .setBehaviours(makeBehaviours(behaviours))
-      .setPosition(position)
-      .emit();
+        if (!numberOfEmitters) {
+          return resolve(proton);
+        }
 
-    proton.addEmitter(emitter);
+        madeEmitters.forEach(madeEmitter => {
+          proton.addEmitter(madeEmitter);
+
+          if (proton.emitters.length === numberOfEmitters) {
+            resolve(proton);
+          }
+        });
+      })
+      .catch(reject);
   });
-
-  return proton;
-};

@@ -255,9 +255,11 @@
             }
           ]
         };
-        proton = Proton.default
-          .fromJSON(json)
-          .addRenderer(new Proton.SpriteRenderer(scene));
+
+        Proton.default.fromJSON(json).then(hydrated => {
+          proton = hydrated;
+          proton.addRenderer(new Proton.SpriteRenderer(scene));
+        });
       }
 
       function animate() {
