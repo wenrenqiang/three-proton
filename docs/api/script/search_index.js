@@ -540,6 +540,18 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "@rohandeshpande/three-proton/src/core/pool/materialpool.js~materialpool",
+    "class/src/core/Pool/MaterialPool.js~MaterialPool.html",
+    "<span>MaterialPool</span> <span class=\"search-result-import-path\">@rohandeshpande/three-proton/src/core/Pool/MaterialPool.js</span>",
+    "class"
+  ],
+  [
+    "@rohandeshpande/three-proton/src/core/pool/meshpool.js~meshpool",
+    "class/src/core/Pool/MeshPool.js~MeshPool.html",
+    "<span>MeshPool</span> <span class=\"search-result-import-path\">@rohandeshpande/three-proton/src/core/Pool/MeshPool.js</span>",
+    "class"
+  ],
+  [
     "@rohandeshpande/three-proton/src/renderer/meshrenderer.js~meshrenderer",
     "class/src/renderer/MeshRenderer.js~MeshRenderer.html",
     "<span>MeshRenderer</span> <span class=\"search-result-import-path\">@rohandeshpande/three-proton/src/renderer/MeshRenderer.js</span>",
@@ -648,6 +660,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "@rohandeshpande/three-proton/src/core/pool/particlepool.js~particlepool",
+    "class/src/core/Pool/ParticlePool.js~ParticlePool.html",
+    "<span>ParticlePool</span> <span class=\"search-result-import-path\">@rohandeshpande/three-proton/src/core/Pool/ParticlePool.js</span>",
+    "class"
+  ],
+  [
     "@rohandeshpande/three-proton/src/zone/pointzone.js~pointzone",
     "class/src/zone/PointZone.js~PointZone.html",
     "<span>PointZone</span> <span class=\"search-result-import-path\">@rohandeshpande/three-proton/src/zone/PointZone.js</span>",
@@ -675,6 +693,12 @@ window.esdocSearchIndex = [
     "@rohandeshpande/three-proton/src/core/pool.js~pool",
     "class/src/core/Pool.js~Pool.html",
     "<span>Pool</span> <span class=\"search-result-import-path\">@rohandeshpande/three-proton/src/core/Pool.js</span>",
+    "class"
+  ],
+  [
+    "@rohandeshpande/three-proton/src/core/pool/index.js~pool",
+    "class/src/core/Pool/index.js~Pool.html",
+    "<span>Pool</span> <span class=\"search-result-import-path\">@rohandeshpande/three-proton/src/core/Pool/index.js</span>",
     "class"
   ],
   [
@@ -1585,13 +1609,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/behaviour/color.js~color#same",
-    "class/src/behaviour/Color.js~Color.html#instance-set-same",
+    "class/src/behaviour/Color.js~Color.html#instance-get-same",
     "src/behaviour/Color.js~Color#same",
     "member"
   ],
   [
     "src/behaviour/color.js~color#same",
-    "class/src/behaviour/Color.js~Color.html#instance-get-same",
+    "class/src/behaviour/Color.js~Color.html#instance-set-same",
     "src/behaviour/Color.js~Color#same",
     "member"
   ],
@@ -1837,13 +1861,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/behaviour/rotate.js~rotate#type",
-    "class/src/behaviour/Rotate.js~Rotate.html#instance-set-type",
+    "class/src/behaviour/Rotate.js~Rotate.html#instance-get-type",
     "src/behaviour/Rotate.js~Rotate#type",
     "member"
   ],
   [
     "src/behaviour/rotate.js~rotate#type",
-    "class/src/behaviour/Rotate.js~Rotate.html#instance-get-type",
+    "class/src/behaviour/Rotate.js~Rotate.html#instance-set-type",
     "src/behaviour/Rotate.js~Rotate#type",
     "member"
   ],
@@ -2304,6 +2328,78 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/core/pool/materialpool.js",
+    "file/src/core/Pool/MaterialPool.js.html",
+    "src/core/Pool/MaterialPool.js",
+    "file"
+  ],
+  [
+    "src/core/pool/materialpool.js~materialpool#constructor",
+    "class/src/core/Pool/MaterialPool.js~MaterialPool.html#instance-constructor-constructor",
+    "src/core/Pool/MaterialPool.js~MaterialPool#constructor",
+    "method"
+  ],
+  [
+    "src/core/pool/meshpool.js",
+    "file/src/core/Pool/MeshPool.js.html",
+    "src/core/Pool/MeshPool.js",
+    "file"
+  ],
+  [
+    "src/core/pool/meshpool.js~meshpool#constructor",
+    "class/src/core/Pool/MeshPool.js~MeshPool.html#instance-constructor-constructor",
+    "src/core/Pool/MeshPool.js~MeshPool#constructor",
+    "method"
+  ],
+  [
+    "src/core/pool/particlepool.js",
+    "file/src/core/Pool/ParticlePool.js.html",
+    "src/core/Pool/ParticlePool.js",
+    "file"
+  ],
+  [
+    "src/core/pool/particlepool.js~particlepool#constructor",
+    "class/src/core/Pool/ParticlePool.js~ParticlePool.html#instance-constructor-constructor",
+    "src/core/Pool/ParticlePool.js~ParticlePool#constructor",
+    "method"
+  ],
+  [
+    "src/core/pool/index.js",
+    "file/src/core/Pool/index.js.html",
+    "src/core/Pool/index.js",
+    "file"
+  ],
+  [
+    "src/core/pool/index.js~pool#create",
+    "class/src/core/Pool/index.js~Pool.html#instance-method-create",
+    "src/core/Pool/index.js~Pool#create",
+    "method"
+  ],
+  [
+    "src/core/pool/index.js~pool#pool",
+    "class/src/core/Pool/index.js~Pool.html#instance-member-pool",
+    "src/core/Pool/index.js~Pool#pool",
+    "member"
+  ],
+  [
+    "src/core/pool/index.js~pool#recycle",
+    "class/src/core/Pool/index.js~Pool.html#instance-method-recycle",
+    "src/core/Pool/index.js~Pool#recycle",
+    "method"
+  ],
+  [
+    "src/core/pool/index.js~pool#size",
+    "class/src/core/Pool/index.js~Pool.html#instance-method-size",
+    "src/core/Pool/index.js~Pool#size",
+    "method"
+  ],
+  [
+    "src/core/pool/index.js~pool#use",
+    "class/src/core/Pool/index.js~Pool.html#instance-method-use",
+    "src/core/Pool/index.js~Pool#use",
+    "method"
+  ],
+  [
     "src/core/proton.js",
     "file/src/core/Proton.js.html",
     "src/core/Proton.js",
@@ -2652,6 +2748,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/emitter/emitter.js~emitter#particlepool",
+    "class/src/emitter/Emitter.js~Emitter.html#instance-member-particlePool",
+    "src/emitter/Emitter.js~Emitter#particlePool",
+    "member"
+  ],
+  [
     "src/emitter/emitter.js~emitter#particles",
     "class/src/emitter/Emitter.js~Emitter.html#instance-member-particles",
     "src/emitter/Emitter.js~Emitter#particles",
@@ -2869,13 +2971,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/events/eventdispatcher.js~eventdispatcher#listeners",
-    "class/src/events/EventDispatcher.js~EventDispatcher.html#instance-set-listeners",
+    "class/src/events/EventDispatcher.js~EventDispatcher.html#instance-get-listeners",
     "src/events/EventDispatcher.js~EventDispatcher#listeners",
     "member"
   ],
   [
     "src/events/eventdispatcher.js~eventdispatcher#listeners",
-    "class/src/events/EventDispatcher.js~EventDispatcher.html#instance-get-listeners",
+    "class/src/events/EventDispatcher.js~EventDispatcher.html#instance-set-listeners",
     "src/events/EventDispatcher.js~EventDispatcher#listeners",
     "member"
   ],
@@ -3840,24 +3942,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/renderer/meshrenderer.js~meshrenderer#_body",
-    "class/src/renderer/MeshRenderer.js~MeshRenderer.html#instance-member-_body",
-    "src/renderer/MeshRenderer.js~MeshRenderer#_body",
-    "member"
-  ],
-  [
-    "src/renderer/meshrenderer.js~meshrenderer#_materialpool",
-    "class/src/renderer/MeshRenderer.js~MeshRenderer.html#instance-member-_materialPool",
-    "src/renderer/MeshRenderer.js~MeshRenderer#_materialPool",
-    "member"
-  ],
-  [
-    "src/renderer/meshrenderer.js~meshrenderer#_targetpool",
-    "class/src/renderer/MeshRenderer.js~MeshRenderer.html#instance-member-_targetPool",
-    "src/renderer/MeshRenderer.js~MeshRenderer#_targetPool",
-    "member"
-  ],
-  [
     "src/renderer/meshrenderer.js~meshrenderer#constructor",
     "class/src/renderer/MeshRenderer.js~MeshRenderer.html#instance-constructor-constructor",
     "src/renderer/MeshRenderer.js~MeshRenderer#constructor",
@@ -3867,6 +3951,24 @@ window.esdocSearchIndex = [
     "src/renderer/meshrenderer.js~meshrenderer#container",
     "class/src/renderer/MeshRenderer.js~MeshRenderer.html#instance-member-container",
     "src/renderer/MeshRenderer.js~MeshRenderer#container",
+    "member"
+  ],
+  [
+    "src/renderer/meshrenderer.js~meshrenderer#defaultparticlebody",
+    "class/src/renderer/MeshRenderer.js~MeshRenderer.html#instance-member-defaultParticleBody",
+    "src/renderer/MeshRenderer.js~MeshRenderer#defaultParticleBody",
+    "member"
+  ],
+  [
+    "src/renderer/meshrenderer.js~meshrenderer#materialpool",
+    "class/src/renderer/MeshRenderer.js~MeshRenderer.html#instance-member-materialPool",
+    "src/renderer/MeshRenderer.js~MeshRenderer#materialPool",
+    "member"
+  ],
+  [
+    "src/renderer/meshrenderer.js~meshrenderer#meshpool",
+    "class/src/renderer/MeshRenderer.js~MeshRenderer.html#instance-member-meshPool",
+    "src/renderer/MeshRenderer.js~MeshRenderer#meshPool",
     "member"
   ],
   [
@@ -3897,6 +3999,18 @@ window.esdocSearchIndex = [
     "src/renderer/meshrenderer.js~meshrenderer#scale",
     "class/src/renderer/MeshRenderer.js~MeshRenderer.html#instance-method-scale",
     "src/renderer/MeshRenderer.js~MeshRenderer#scale",
+    "method"
+  ],
+  [
+    "src/renderer/meshrenderer.js~meshrenderer#setupmaterialpool",
+    "class/src/renderer/MeshRenderer.js~MeshRenderer.html#instance-method-setupMaterialPool",
+    "src/renderer/MeshRenderer.js~MeshRenderer#setupMaterialPool",
+    "method"
+  ],
+  [
+    "src/renderer/meshrenderer.js~meshrenderer#setupmeshpool",
+    "class/src/renderer/MeshRenderer.js~MeshRenderer.html#instance-method-setupMeshPool",
+    "src/renderer/MeshRenderer.js~MeshRenderer#setupMeshPool",
     "method"
   ],
   [
@@ -3948,16 +4062,16 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/renderer/spriterenderer.js~spriterenderer#_body",
-    "class/src/renderer/SpriteRenderer.js~SpriteRenderer.html#instance-member-_body",
-    "src/renderer/SpriteRenderer.js~SpriteRenderer#_body",
-    "member"
-  ],
-  [
     "src/renderer/spriterenderer.js~spriterenderer#constructor",
     "class/src/renderer/SpriteRenderer.js~SpriteRenderer.html#instance-constructor-constructor",
     "src/renderer/SpriteRenderer.js~SpriteRenderer#constructor",
     "method"
+  ],
+  [
+    "src/renderer/spriterenderer.js~spriterenderer#defaultparticlebody",
+    "class/src/renderer/SpriteRenderer.js~SpriteRenderer.html#instance-member-defaultParticleBody",
+    "src/renderer/SpriteRenderer.js~SpriteRenderer#defaultParticleBody",
+    "member"
   ],
   [
     "src/renderer/spriterenderer.js~spriterenderer#scale",

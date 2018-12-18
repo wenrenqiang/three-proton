@@ -104,6 +104,10 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SUPPORTED_JSON_INITIALIZER_TYPES">SUPPORTED_JSON_INITIALIZER_TYPES</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SUPPORTED_JSON_RENDERER_TYPES">SUPPORTED_JSON_RENDERER_TYPES</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SUPPORTED_JSON_ZONE_TYPES">SUPPORTED_JSON_ZONE_TYPES</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-pool">core/Pool</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/Pool/MaterialPool.js~MaterialPool.html">MaterialPool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/Pool/MeshPool.js~MeshPool.html">MeshPool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/Pool/ParticlePool.js~ParticlePool.html">ParticlePool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/Pool/index.js~Pool.html">Pool</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#debug">debug</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-log">log</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_DEPTH">DEFAULT_DEPTH</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_HEIGHT">DEFAULT_HEIGHT</a></span></span></li>
@@ -193,10 +197,9 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/renderer/MeshRenderer.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { BoxGeometry, Mesh, MeshLambertMaterial } from &apos;three&apos;;
+import { MaterialPool, MeshPool } from &apos;../core&apos;;
 
 import BaseRenderer from &apos;./BaseRenderer&apos;;
-import { PUID } from &apos;../utils&apos;;
-import { Pool } from &apos;../core&apos;;
 
 export default class MeshRenderer extends BaseRenderer {
   constructor(container) {
@@ -204,28 +207,52 @@ export default class MeshRenderer extends BaseRenderer {
 
     this.container = container;
 
-    this._targetPool = new Pool();
-    this._materialPool = new Pool();
-    this._body = new Mesh(
+    this.meshPool = null;
+    this.materialPool = null;
+    this.defaultParticleBody = new Mesh(
       new BoxGeometry(50, 50, 50),
       new MeshLambertMaterial({ color: &apos;#ff0000&apos; })
     );
+  }
+
+  setupMeshPool(mesh) {
+    if (this.meshPool) {
+      return;
+    }
+
+    this.meshPool = new MeshPool(mesh);
+
+    return this;
+  }
+
+  setupMaterialPool(material) {
+    if (this.materialPool) {
+      return;
+    }
+
+    this.materialPool = new MaterialPool(material);
+
+    return this;
   }
 
   onProtonUpdate() {}
 
   onParticleCreated(particle) {
     if (!particle.target) {
+      if (!particle.body) {
+        particle.body = this.defaultParticleBody;
+      }
+
+      this.setupMeshPool(particle.body);
+
       //set target
-      if (!particle.body) particle.body = this._body;
-      particle.target = this._targetPool.get(particle.body);
+      particle.target = this.meshPool.use();
 
       //set material
       if (particle.useAlpha || particle.useColor) {
-        particle.target.material.__puid = PUID.id(particle.body.material);
-        particle.target.material = this._materialPool.get(
-          particle.target.material
-        );
+        this.setupMaterialPool(particle.body.material);
+
+        particle.target.material = this.materialPool.use();
       }
     }
 
@@ -263,9 +290,9 @@ export default class MeshRenderer extends BaseRenderer {
   onParticleDead(particle) {
     if (particle.target) {
       if (particle.useAlpha || particle.useColor)
-        this._materialPool.expire(particle.target.material);
+        this.materialPool.recycle(particle.target.material);
 
-      this._targetPool.expire(particle.target);
+      this.meshPool.recycle(particle.target);
       this.container.remove(particle.target);
       particle.target = null;
     }

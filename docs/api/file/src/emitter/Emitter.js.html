@@ -104,6 +104,10 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SUPPORTED_JSON_INITIALIZER_TYPES">SUPPORTED_JSON_INITIALIZER_TYPES</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SUPPORTED_JSON_RENDERER_TYPES">SUPPORTED_JSON_RENDERER_TYPES</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SUPPORTED_JSON_ZONE_TYPES">SUPPORTED_JSON_ZONE_TYPES</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-pool">core/Pool</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/Pool/MaterialPool.js~MaterialPool.html">MaterialPool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/Pool/MeshPool.js~MeshPool.html">MeshPool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/Pool/ParticlePool.js~ParticlePool.html">ParticlePool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/Pool/index.js~Pool.html">Pool</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#debug">debug</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-log">log</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_DEPTH">DEFAULT_DEPTH</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_HEIGHT">DEFAULT_HEIGHT</a></span></span></li>
@@ -204,9 +208,9 @@ import EventDispatcher, {
   PARTICLE_UPDATE
 } from &apos;../events&apos;;
 import { INTEGRATION_TYPE_EULER, integrate } from &apos;../math&apos;;
+import { Particle, ParticlePool } from &apos;../core/&apos;;
 
 import { InitializerUtil } from &apos;../initializer&apos;;
-import Particle from &apos;../core/Particle&apos;;
 import Util from &apos;../utils/Util&apos;;
 import uid from &apos;../utils/uid&apos;;
 
@@ -294,6 +298,12 @@ export default class Emitter extends Particle {
      * @type {EventDispatcher}
      */
     this.eventDispatcher = new EventDispatcher();
+
+    /**
+     * @desc The emitter&apos;s particle pool.
+     * @type {ParticlePool}
+     */
+    this.particlePool = new ParticlePool();
   }
 
   /**
@@ -530,7 +540,7 @@ export default class Emitter extends Particle {
    * @return {Emitter}
    */
   createParticle(initializer, behaviour) {
-    const particle = this.parent.pool.get(Particle);
+    const particle = this.particlePool.use();
 
     this.setupParticle(particle, initializer, behaviour);
     this.parent &amp;&amp; this.parent.dispatch(PARTICLE_CREATED, particle);
@@ -601,7 +611,7 @@ export default class Emitter extends Particle {
       if (particle.dead) {
         this.parent &amp;&amp; this.parent.dispatch(PARTICLE_DEAD, particle);
         this.bindEmitterEvent &amp;&amp; this.dispatch(PARTICLE_DEAD, particle);
-        this.parent.pool.expire(particle.reset());
+        this.particlePool.recycle(particle.reset());
         this.particles.splice(i, 1);
       }
     }

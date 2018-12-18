@@ -1,7 +1,7 @@
 {
-  "coverage": "54.72%",
-  "expectCount": 625,
-  "actualCount": 342,
+  "coverage": "54.06%",
+  "expectCount": 640,
+  "actualCount": 346,
   "files": {
     "src/behaviour/Alpha.js": {
       "expectCount": 11,
@@ -174,6 +174,39 @@
         58
       ]
     },
+    "src/core/Pool/MaterialPool.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        8
+      ]
+    },
+    "src/core/Pool/MeshPool.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        8
+      ]
+    },
+    "src/core/Pool/ParticlePool.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        9
+      ]
+    },
+    "src/core/Pool/index.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        5,
+        8,
+        12,
+        16
+      ]
+    },
     "src/core/Pool.js": {
       "expectCount": 13,
       "actualCount": 13,
@@ -230,16 +263,16 @@
       ]
     },
     "src/emitter/Emitter.js": {
-      "expectCount": 42,
-      "actualCount": 35,
+      "expectCount": 43,
+      "actualCount": 36,
       "undocumentLines": [
         95,
         96,
-        158,
-        342,
-        393,
-        488,
-        489
+        164,
+        348,
+        399,
+        494,
+        495
       ]
     },
     "src/emitter/FollowEmitter.js": {
@@ -503,20 +536,22 @@
       ]
     },
     "src/renderer/MeshRenderer.js": {
-      "expectCount": 11,
+      "expectCount": 13,
       "actualCount": 0,
       "undocumentLines": [
+        6,
         7,
-        8,
-        11,
+        10,
+        12,
         13,
         14,
-        15,
-        21,
-        23,
-        44,
-        65,
-        69
+        20,
+        30,
+        40,
+        42,
+        67,
+        88,
+        92
       ]
     },
     "src/renderer/PointsRenderer.js": {
@@ -539,7 +574,7 @@
         5,
         6,
         9,
-        12
+        14
       ]
     },
     "src/renderer/types.js": {

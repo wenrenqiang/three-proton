@@ -46,47 +46,47 @@
     "filePath": "src/emitter/Emitter.js",
     "lines": [
       {
-        "lineNumber": 347,
+        "lineNumber": 353,
         "line": "  /**"
       },
       {
-        "lineNumber": 348,
+        "lineNumber": 354,
         "line": "   * Sets up a particle by running all initializers on it and setting its behaviours."
       },
       {
-        "lineNumber": 349,
+        "lineNumber": 355,
         "line": "   * Also adds the particle to this.particles."
       },
       {
-        "lineNumber": 350,
-        "line": "   *"
-      },
-      {
-        "lineNumber": 351,
-        "line": "   * TODO This method is only ever called from createParticle and never with arguments"
-      },
-      {
-        "lineNumber": 352,
-        "line": "   * so it's safe to remove the arguments."
-      },
-      {
-        "lineNumber": 353,
-        "line": "   *"
-      },
-      {
-        "lineNumber": 354,
-        "line": "   * @param {Particle} particle - The particle to setup"
-      },
-      {
-        "lineNumber": 355,
-        "line": "   * @return void"
-      },
-      {
         "lineNumber": 356,
-        "line": "   */"
+        "line": "   *"
       },
       {
         "lineNumber": 357,
+        "line": "   * TODO This method is only ever called from createParticle and never with arguments"
+      },
+      {
+        "lineNumber": 358,
+        "line": "   * so it's safe to remove the arguments."
+      },
+      {
+        "lineNumber": 359,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 360,
+        "line": "   * @param {Particle} particle - The particle to setup"
+      },
+      {
+        "lineNumber": 361,
+        "line": "   * @return void"
+      },
+      {
+        "lineNumber": 362,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 363,
         "line": "  setupParticle(particle, initialize, behaviour) {"
       }
     ],
