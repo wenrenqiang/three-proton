@@ -10,9 +10,9 @@ import EventDispatcher, {
   PARTICLE_UPDATE
 } from '../events';
 import { INTEGRATION_TYPE_EULER, integrate } from '../math';
+import { Particle, ParticlePool } from '../core/';
 
 import { InitializerUtil } from '../initializer';
-import Particle from '../core/Particle';
 import Util from '../utils/Util';
 import uid from '../utils/uid';
 
@@ -100,6 +100,12 @@ export default class Emitter extends Particle {
      * @type {EventDispatcher}
      */
     this.eventDispatcher = new EventDispatcher();
+
+    /**
+     * @desc The emitter's particle pool.
+     * @type {ParticlePool}
+     */
+    this.particlePool = new ParticlePool();
   }
 
   /**
@@ -336,7 +342,7 @@ export default class Emitter extends Particle {
    * @return {Emitter}
    */
   createParticle(initializer, behaviour) {
-    const particle = this.parent.pool.get(Particle);
+    const particle = this.particlePool.use();
 
     this.setupParticle(particle, initializer, behaviour);
     this.parent && this.parent.dispatch(PARTICLE_CREATED, particle);
@@ -407,7 +413,7 @@ export default class Emitter extends Particle {
       if (particle.dead) {
         this.parent && this.parent.dispatch(PARTICLE_DEAD, particle);
         this.bindEmitterEvent && this.dispatch(PARTICLE_DEAD, particle);
-        this.parent.pool.expire(particle.reset());
+        this.particlePool.recycle(particle.reset());
         this.particles.splice(i, 1);
       }
     }
